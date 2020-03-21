@@ -19,9 +19,25 @@ void Wyswietl(WyrazenieZesp WyrZ)
     Zesp1 = WyrZ.Arg1;
     Zesp2 = WyrZ.Arg2;
 
+    if(Oper == Op_Dodaj){
     std::cout << "(" << Zesp1.re << std::showpos << Zesp1.im << std::noshowpos << "i)"
-    << Oper 
+    << "+"
     << "(" << Zesp2.re << std::showpos << Zesp2.im << std::noshowpos << "i)" << std::endl;
+    } else if(Oper == Op_Odejmij){
+    std::cout << "(" << Zesp1.re << std::showpos << Zesp1.im << std::noshowpos << "i)"
+    << "-"
+    << "(" << Zesp2.re << std::showpos << Zesp2.im << std::noshowpos << "i)" << std::endl;
+    } else if(Oper == Op_Mnoz){
+    std::cout << "(" << Zesp1.re << std::showpos << Zesp1.im << std::noshowpos << "i)"
+    << "*"
+    << "(" << Zesp2.re << std::showpos << Zesp2.im << std::noshowpos << "i)" << std::endl;
+    } else if(Oper == Op_Dziel){
+    std::cout << "(" << Zesp1.re << std::showpos << Zesp1.im << std::noshowpos << "i)"
+    << "/"
+    << "(" << Zesp2.re << std::showpos << Zesp2.im << std::noshowpos << "i)" << std::endl;
+    } else {
+        std::cout << "Niepoprawny operator" << std::endl;
+    }
 }
 
 LZespolona Oblicz(WyrazenieZesp WyrZ)

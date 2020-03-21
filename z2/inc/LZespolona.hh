@@ -1,6 +1,8 @@
 #ifndef LZESPOLONA_HH
 #define LZESPOLONA_HH
 
+#include "Statystyka.hh"
+
 /*!
  *  Plik zawiera definicje struktury LZesplona oraz zapowiedzi
  *  przeciazen operatorow arytmetycznych dzialajacych na tej 
@@ -27,6 +29,7 @@ LZespolona ZespPrzezRzecz (LZespolona Skl, double r);
 LZespolona Sprzezenie (LZespolona Skl);
 LZespolona operator / (LZespolona Skl1, LZespolona Skl2);
 bool operator == (LZespolona Skl1, LZespolona Skl2);
+bool operator != (LZespolona Skl1, LZespolona Skl2);
 
 
 #endif

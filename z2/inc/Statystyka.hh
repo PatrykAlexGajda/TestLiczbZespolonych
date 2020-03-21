@@ -1,7 +1,7 @@
 struct Statystyka {
 
-    int l_pyt;
-    int l_pop;
+    double l_pyt;
+    double l_pop;
 };
 
-void WyswietlStat(int pyt, int pop);
+void WyswietlStat(Statystyka stat);
