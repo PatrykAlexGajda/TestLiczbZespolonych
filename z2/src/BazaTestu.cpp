@@ -11,16 +11,16 @@ using namespace std;
  */
 static WyrazenieZesp  TestLatwy[] =
   { {{2,1}, Op_Dodaj, {1,2}},
-    {{1,0}, Op_Odejmij, {0,1}},
+    {{1,0}, Op_Odejmij, {-9,1}},
     {{3,0}, Op_Mnoz, {0,3}},
-    {{4,8}, Op_Dziel, {1,0}},
+    {{-4,8}, Op_Dziel, {0,2}},
   };
 
 static WyrazenieZesp  TestTrudny[] =
-  { {{3,1}, Op_Dodaj, {1,2}},
-    {{2,0}, Op_Odejmij, {0,1}},
+  { {{3,-1}, Op_Mnoz, {1,2}},
+    {{2,0}, Op_Dziel, {-2,1}},
     {{4,0}, Op_Mnoz, {0,3}},
-    {{5,8}, Op_Dziel, {1,0}},
+    {{5,-3}, Op_Dziel, {1,0}},
   };
 
 /*

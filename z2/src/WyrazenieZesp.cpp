@@ -1,16 +1,11 @@
 #include "WyrazenieZesp.hh"
 #include <iostream>
 
-LZespolona Utworz(double x, double y)
-{
-    LZespolona liczba_zesp;
-    liczba_zesp.re = x;
-    liczba_zesp.im = y;
+/* Przeciazenie operatora << aby mogl wyswietlac cale wyrazenie zespolone.
+    W przypadku pojawienia sie zlego operatora funkcja zwraca odpowiedni komunikat
+    Jesli zapis wyrazenia jest poprawny funkcja zwroci to wyrazenie. */
 
-    return liczba_zesp;
-}
-
-void Wyswietl(WyrazenieZesp WyrZ)
+std::ostream &operator<<(std::ostream &str, const WyrazenieZesp &WyrZ)
 {
     LZespolona Zesp1;
     LZespolona Zesp2;
@@ -20,25 +15,31 @@ void Wyswietl(WyrazenieZesp WyrZ)
     Zesp2 = WyrZ.Arg2;
 
     if(Oper == Op_Dodaj){
-    std::cout << "(" << Zesp1.re << std::showpos << Zesp1.im << std::noshowpos << "i)"
+    return str << "(" << Zesp1.re << std::showpos << Zesp1.im << std::noshowpos << "i)"
     << "+"
     << "(" << Zesp2.re << std::showpos << Zesp2.im << std::noshowpos << "i)" << std::endl;
     } else if(Oper == Op_Odejmij){
-    std::cout << "(" << Zesp1.re << std::showpos << Zesp1.im << std::noshowpos << "i)"
+    return str << "(" << Zesp1.re << std::showpos << Zesp1.im << std::noshowpos << "i)"
     << "-"
     << "(" << Zesp2.re << std::showpos << Zesp2.im << std::noshowpos << "i)" << std::endl;
     } else if(Oper == Op_Mnoz){
-    std::cout << "(" << Zesp1.re << std::showpos << Zesp1.im << std::noshowpos << "i)"
+    return str << "(" << Zesp1.re << std::showpos << Zesp1.im << std::noshowpos << "i)"
     << "*"
     << "(" << Zesp2.re << std::showpos << Zesp2.im << std::noshowpos << "i)" << std::endl;
     } else if(Oper == Op_Dziel){
-    std::cout << "(" << Zesp1.re << std::showpos << Zesp1.im << std::noshowpos << "i)"
+    return str << "(" << Zesp1.re << std::showpos << Zesp1.im << std::noshowpos << "i)"
     << "/"
     << "(" << Zesp2.re << std::showpos << Zesp2.im << std::noshowpos << "i)" << std::endl;
     } else {
-        std::cout << "Niepoprawny operator" << std::endl;
+        return str << "Niepoprawny operator" << std::endl;
     }
+
 }
+
+/* Funkcja oblicza wyrazenie zespolone.
+    Zwraca liczbe zespolona jako wynik danego wyrazenia zespolonego.
+    W przypadku pojawienia sie zlego operatora arytmetycznego funkcja zwraca pierwsza
+    skladowa wyrazenia i wyswietla odpowiedni komunikat. */
 
 LZespolona Oblicz(WyrazenieZesp WyrZ)
 {
