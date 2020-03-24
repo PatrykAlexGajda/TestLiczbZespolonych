@@ -19,7 +19,6 @@ struct  LZespolona {
 lub liczacych je na podstawie zawartosci struktury LZespolona */
 
 LZespolona Utworz(double x, double y);
-LZespolona ZespPrzezRzecz (LZespolona Skl, double r);
 LZespolona Sprzezenie (LZespolona Skl);
 double Modul(LZespolona Skl);
 
@@ -36,6 +35,7 @@ LZespolona operator + (LZespolona Skl1, LZespolona Skl2);
 LZespolona operator - (LZespolona Skl1, LZespolona Skl2);
 LZespolona operator * (LZespolona Skl1, LZespolona Skl2);
 LZespolona operator / (LZespolona Skl1, LZespolona Skl2);
+LZespolona operator / (LZespolona Skl, double r);
 
 /* Naglowki przeciazen operatorow porownujacych liczby zespolone. */
 

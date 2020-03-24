@@ -1,5 +1,5 @@
 /* Modeluje pojecie Statystyka informujac o ilosci przeprowadzonych pytan
-    oraz udzielonych poprawnych odpowiedzi  */
+    oraz udzielonych poprawnych odpowiedzi  */ 
 
 struct Statystyka {
 
@@ -9,4 +9,7 @@ struct Statystyka {
 
 /* Naglowek funkcji wyswietlajacej Statystyke testu. */
 
-void WyswietlStat(Statystyka stat);
+void ZerujStat(Statystyka &stat);
+void DodajPyt(Statystyka &stat);
+void DodajPop(Statystyka &stat);
+void WyswietlStat(Statystyka &stat);

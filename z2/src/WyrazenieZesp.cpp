@@ -7,29 +7,17 @@
 
 std::ostream &operator<<(std::ostream &str, const WyrazenieZesp &WyrZ)
 {
-    LZespolona Zesp1;
-    LZespolona Zesp2;
     Operator Oper;
     Oper = WyrZ.Op;
-    Zesp1 = WyrZ.Arg1;
-    Zesp2 = WyrZ.Arg2;
 
     if(Oper == Op_Dodaj){
-    return str << "(" << Zesp1.re << std::showpos << Zesp1.im << std::noshowpos << "i)"
-    << "+"
-    << "(" << Zesp2.re << std::showpos << Zesp2.im << std::noshowpos << "i)" << std::endl;
+    return str << WyrZ.Arg1 << "+" << WyrZ.Arg2 << std::endl;
     } else if(Oper == Op_Odejmij){
-    return str << "(" << Zesp1.re << std::showpos << Zesp1.im << std::noshowpos << "i)"
-    << "-"
-    << "(" << Zesp2.re << std::showpos << Zesp2.im << std::noshowpos << "i)" << std::endl;
+    return str << WyrZ.Arg1 << "-" << WyrZ.Arg2 << std::endl;
     } else if(Oper == Op_Mnoz){
-    return str << "(" << Zesp1.re << std::showpos << Zesp1.im << std::noshowpos << "i)"
-    << "*"
-    << "(" << Zesp2.re << std::showpos << Zesp2.im << std::noshowpos << "i)" << std::endl;
+    return str << WyrZ.Arg1 << "*" << WyrZ.Arg2 << std::endl;
     } else if(Oper == Op_Dziel){
-    return str << "(" << Zesp1.re << std::showpos << Zesp1.im << std::noshowpos << "i)"
-    << "/"
-    << "(" << Zesp2.re << std::showpos << Zesp2.im << std::noshowpos << "i)" << std::endl;
+    return str << WyrZ.Arg1 << "/" << WyrZ.Arg2 << std::endl;
     } else {
         return str << "Niepoprawny operator" << std::endl;
     }

@@ -18,9 +18,9 @@ static WyrazenieZesp  TestLatwy[] =
 
 static WyrazenieZesp  TestTrudny[] =
   { {{3,-1}, Op_Mnoz, {1,2}},
-    {{2,0}, Op_Dziel, {-2,1}},
-    {{4,0}, Op_Mnoz, {0,3}},
-    {{5,-3}, Op_Dziel, {1,0}},
+    {{0,2}, Op_Dziel, {-2,1}},
+    {{4,-3}, Op_Mnoz, {-2,3}},
+    {{5,-3}, Op_Dziel, {1,5}},
   };
 
 /*

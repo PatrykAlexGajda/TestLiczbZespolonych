@@ -46,13 +46,13 @@ std::istream &operator>>(std::istream &str, LZespolona &zesp)
 
 std::ostream &operator<<(std::ostream &str, const LZespolona &zesp)
 {
-  return str << "(" << zesp.re << std::showpos << zesp.im << std::noshowpos << "i)" << std::endl;
+  return str << "(" << zesp.re << std::showpos << zesp.im << std::noshowpos << "i)";
 }
 
 /* Funkcja dzieli liczbe zespolona przez liczbe rzeczywista.
   Funkcja zwraca podzielona liczbe zespolona. */
 
-LZespolona ZespPrzezRzecz (LZespolona Skl, double r)
+LZespolona operator / (LZespolona Skl, double r)
 {
   LZespolona Wynik;
 
@@ -120,15 +120,22 @@ LZespolona operator * (LZespolona Skl1, LZespolona Skl2)
 }
 
 /* Funkcja przeciaza operator / aby mogl dzielic liczby zespolone.
-  Funkcja zwraca wynik dzielenia podanych liczb zespolonych. */
+  Funkcja zwraca wynik dzielenia podanych liczb zespolonych, 
+  a w przypadku dzielenia przez zero zespoloną z mianownika. */
 
 LZespolona operator / (LZespolona Skl1, LZespolona Skl2)
 {
   LZespolona Wynik;
   LZespolona Licznik = Skl1 *Sprzezenie(Skl2);
   double Mianownik = pow(Modul(Skl2), 2);
-  Wynik = ZespPrzezRzecz(Licznik, Mianownik);
-  return Wynik;
+  
+  if (Mianownik == 0){
+    std::cerr << "Proba dzielenia przez zero!" << std::endl;
+    return Skl2;
+  } else {
+      Wynik = Licznik / Mianownik;
+      return Wynik;
+  }
 }
 
 /* Funkcja przeciaza operaor == aby mogl porownywac liczby zespolone.
@@ -136,17 +143,11 @@ LZespolona operator / (LZespolona Skl1, LZespolona Skl2)
 
 bool operator == (LZespolona Skl1, LZespolona Skl2)
 {
-  bool same;
-
-  if((Skl1.re == Skl2.re) && (Skl1.im == Skl2.im))
-  {
-    same = true;
-  } 
-    else 
-  {
-    same = false;
+  if((Skl1.re == Skl2.re) && (Skl1.im == Skl2.im)){
+      return true;
+  } else {
+      return false;
   }
-  return same;
 }
 
 /* Analogicznie do poprzedniej funkcji tylko dla nierownosci.
@@ -154,16 +155,6 @@ bool operator == (LZespolona Skl1, LZespolona Skl2)
 
 bool operator != (LZespolona Skl1, LZespolona Skl2){
 
-  bool notsame;
-
-  if((Skl1.re != Skl2.re) || (Skl1.im != Skl2.im))
-  {
-    notsame = true;
-  }
-    else
-  {
-    notsame = false;
-  }
-  return notsame;
+  return !(Skl1 == Skl2);  
 }
 

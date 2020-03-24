@@ -24,13 +24,14 @@ int main(int argc, char **argv)
   std::cout << std::endl;
 
   WyrazenieZesp   WyrZ_PytanieTestowe; // Utworzenie zmiennej typu WyrazenieZesp do przechowywania wyrazen zespolonych
-  int liczbaPyt = 0;  // Inicjacja zmiennej przechowujacej ilosc przeprowadzonych pytan
-  int popOdp = 0; // Inicjacja ilosci poprawnie udzielonych odpowiedzi
 
   std::cout << "INSTRUKCJA:" << std::endl;
   std::cout << "Odpowiedzi nalezy wpisywac w nawiasach, oraz wpisywac 1 i 0, np.:" << std::endl;
   std::cout << "(0+1i) - Dobrze, (i) - Zle, (13+0i) - Dobrze, (12) - Zle, (0+0i) - Dobrze." << std::endl;
   std::cout << "\n\n";
+
+  Statystyka stat;
+  ZerujStat(stat);
 
   // Petla pobierajaca pytania z bazy testu
   while (PobierzNastpnePytanie(&BazaT,&WyrZ_PytanieTestowe)) {
@@ -50,27 +51,22 @@ int main(int argc, char **argv)
     // Petla dajaca trzy szanse na ponowne wprowadzenie poprawnego zapisu odpowiedzi
     while((std::cin.fail()) && (i < 4)){
 
+        std::cin.clear();
+        std::cin.ignore(10000, '\n');
+
         if(i == 0){
-          std::cin.clear();
-          std::cin.ignore(10000, '\n');
           std::cerr << "Bladny zapis. Trzy szanse na wprowadzenie jeszcze raz: ";
           std::cin >> odpowiedz;
           i++;
         } else if(i == 1){
-          std::cin.clear();
-          std::cin.ignore(10000, '\n');
           std::cerr << "Bledny zapis. Dwie szanse na wprowadzenie jeszcze raz: ";
           std::cin >> odpowiedz;
           i++;
         } else if(i == 2){
-          std::cin.clear();
-          std::cin.ignore(10000, '\n');
           std::cerr << "Bledny zapis. Jedna szansa na wprowadzenie jeszcze raz: ";
           std::cin >> odpowiedz;
           i++;
         } else if(i == 3){
-          std::cin.clear();
-          std::cin.ignore(10000, '\n');
           std::cerr << "Bledny zapis. Odpowiedz uznana za bledna." << std::endl;
           i++;
           blad = true;  // odpowiedz bledna
@@ -79,7 +75,7 @@ int main(int argc, char **argv)
     }
 
     if(!zlyZapis){
-      std::cout << "Twoja odpowiedz: " << odpowiedz;
+      std::cout << "Twoja odpowiedz: " << odpowiedz << std::endl; 
     }
 
     if(popWynik != odpowiedz){
@@ -88,19 +84,14 @@ int main(int argc, char **argv)
     
     // Jesli odpowiedz poprawna
     if(popWynik == odpowiedz){
-      std::cout << "Prawidlowy wynik :)" << std::endl;
-      popOdp++;   // Zwiekszenie liczby poprawnych odpowiedzi
-      std::cout << "\n";
+      std::cout << "Prawidlowy wynik :)" << "\n" << std::endl;
+      DodajPop(stat);   // Zwiekszenie liczby poprawnych odpowiedzi
     } else if(blad){ // Jesli odpowiedz niepoprawna
-      std::cout << "Blad :( Poprawna odpowiedz to: " << popWynik << std::endl;
+      std::cout << "Blad :( Poprawna odpowiedz to: " << popWynik << "\n" << std::endl;
     }
 
-    liczbaPyt++;   // Zwiekszenie liczby zadanych pytan
+    DodajPyt(stat);   // Zwiekszenie liczby zadanych pytan
   }
-
-  Statystyka stat;         // Stworzenie zmiennej przechowujacej statystyke testu
-  stat.l_pyt = liczbaPyt;
-  stat.l_pop = popOdp;
 
   WyswietlStat(stat);   // Wyswietlenie statystyki testu
 
